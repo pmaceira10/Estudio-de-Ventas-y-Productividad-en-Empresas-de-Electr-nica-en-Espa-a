@@ -88,8 +88,63 @@ El informe final (`informe_final.Rmd`) integra los resultados de todos los scrip
 ---
 
 ## Cómo ejecutar el proyecto
-1. Clonar el repositorio:  
-   ```bash
 
+### 1) Clonar el repositorio
+```bash
+git clone <[URL_DEL_REPOSITORIO](https://github.com/pmaceira10/ventas-electronica-espana)>
+cd <ventas-electronica-espana)>
+```
+### 2) Requisitos
 
+El proyecto está desarrollado en **R (≥ 4.2)** y requiere las siguientes librerías:  
+`ggplot2`, `dplyr`, `car`, `corrplot`, `moments`, `broom`, `lawstat`, `readxl`, `psych`, `tidyverse`, `patchwork`, `kableExtra`.
 
+### Instalación de librerías (una sola vez)
+
+```r
+install.packages(c(
+  "ggplot2", "dplyr", "car", "corrplot", "moments",
+  "broom", "lawstat", "readxl", "psych",
+  "tidyverse", "patchwork", "kableExtra"
+))
+```
+### 3) Cargar los datos
+
+Los datos deben estar en la carpeta `data/`:
+
+- `data/datos.xlsx` → Base de datos principal  
+- `data/variables.xlsx` → Diccionario de variables  
+
+### 4) Ejecutar el análisis
+
+Existen dos formas de ejecutar el proyecto:
+
+**Opción A – Ejecutar todo con `main.R`:**
+
+```r
+source("scripts/main.R")
+```
+Esto cargará los datos, ejecutará todos los análisis y guardará los gráficos en la carpeta figuras/.
+
+**Opción B – Generar el informe directamente:**
+
+Abrir `informe_final.Rmd` en RStudio
+Compilar con **Knit → HTML**
+Se generará el archivo `informe_final.html` con todo el análisis y las visualizaciones
+
+## Resultados principales
+
+- **Ventas**: muestran una distribución muy asimétrica, con la mayoría de provincias en niveles bajos y unos pocos casos con cifras extremadamente altas.  
+- **Número de empleados**: existe una relación muy fuerte con las ventas (correlación r = 0.89). Las empresas más grandes concentran los mayores niveles de facturación.  
+- **Productividad**: presenta mucha dispersión y no explica de forma clara las ventas (correlación muy baja).  
+- **Categorización de empresas**: el 55% son microempresas, el 32% pequeñas y solo un 7% medianas; el tamaño de la plantilla condiciona fuertemente los tramos de ventas (Chi² = 4874.47, p < 0.001).  
+- **Modelos de regresión**: el modelo simple (ventas ~ empleados) explica un 79% de la variabilidad; el modelo múltiple eleva el ajuste al 80%, incorporando cuota de mercado, edad, número de establecimientos y forma jurídica.  
+- **Madrid vs Barcelona**: no se detectan diferencias estadísticamente significativas en los niveles de ventas entre ambas provincias, independientemente de la prueba aplicada (Mann-Whitney, t de Welch sobre logaritmos, Brunner-Munzel).  
+
+## Autoría y contacto
+
+Este proyecto ha sido desarrollado por **Pedro Maceira Pajares** como parte de su portfolio académico y profesional en análisis y ciencia de datos.  
+
+Para cualquier consulta o colaboración:  
+- Email: pmaceira10@gmail.com  
+- LinkedIn: [https://www.linkedin.com/in/pedro-maceira-pajares-51ab62287/](https://www.linkedin.com/in/pedro-maceira-pajares-51ab62287/)  
